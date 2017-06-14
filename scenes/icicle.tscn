@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scripts/icicle.gd" type="Script" id=1]
+[ext_resource path="res://scripts/icicleArea.gd" type="Script" id=2]
+[ext_resource path="res://assets/icicle.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 18.8323
+
+[node name="icicle" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="icicleKinem" type="KinematicBody2D" parent="."]
+
+transform/rot = -45.0
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="icicleArea" type="Area2D" parent="icicleKinem"]
+
+transform/pos = Vector2( -4.29277, 18.3293 )
+transform/scale = Vector2( 1, 0.521115 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( -4.3183e-08, -0.987912, 1.66069, -7.25909e-08, 5.33446, -31.1802 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 2 )
+
+[node name="fireballColl" type="CollisionShape2D" parent="icicleKinem/icicleArea"]
+
+transform/pos = Vector2( 5.33446, -31.1802 )
+transform/rot = 90.0
+transform/scale = Vector2( 0.987912, 1.66069 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="icicleAnim" type="Sprite" parent="icicleKinem"]
+
+texture = ExtResource( 3 )
+vframes = 8
+hframes = 8
+region_rect = Rect2( 0, 0, 64, 64 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+
